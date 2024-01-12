@@ -674,17 +674,21 @@ defmodule ChanneledBeatsWeb.CoreComponents do
 
   def beat(assigns) do
     ~H"""
-    <div class="border border-black p-4 my-10">
-    	<div>Name: <%= @beat.name %></div>
-    	<div>Artist: <%= @beat.artist %></div>
-    	<div>Album: <%= @beat.album.name %></div>
+    <div class="flex justify-between border border-black p-4 my-10">
+      <div>
+        <div>Name: <%= @beat.name %></div>
+        <div>Artist: <%= @beat.artist %></div>
+        <div>Album: <%= @beat.album.name %></div>
+      </div>
 
-			<div>
-      	<button class="underline">Play</button>
-    	</div>
-			<div>
-      	<button class="underline">Channels</button>
-    	</div>
+      <div>
+        <div>
+          <button class="underline">Play</button>
+        </div>
+        <div>
+          <button class="underline">Channels</button>
+        </div>
+      </div>
     </div>
     """
   end
