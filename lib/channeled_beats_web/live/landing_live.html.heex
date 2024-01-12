@@ -1,1 +1,13 @@
-asdf
+<div>
+
+  <div>
+    <input type="text" />
+    <button type="submit">Search</button>
+  </div>
+
+  <div class="mt-20">Most Popular This Week</div>
+
+  <%= for beat <- @beats do %>
+    <.beat beat={beat} />
+  <% end %>
+</div>

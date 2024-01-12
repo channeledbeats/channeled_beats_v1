@@ -671,4 +671,21 @@ defmodule ChanneledBeatsWeb.CoreComponents do
   def translate_errors(errors, field) when is_list(errors) do
     for {^field, {msg, opts}} <- errors, do: translate_error({msg, opts})
   end
+
+  def beat(assigns) do
+    ~H"""
+    <div class="border border-black p-4 my-10">
+    	<div>Name: <%= @beat.name %></div>
+    	<div>Artist: <%= @beat.artist %></div>
+    	<div>Album: <%= @beat.album.name %></div>
+
+			<div>
+      	<button class="underline">Play</button>
+    	</div>
+			<div>
+      	<button class="underline">Channels</button>
+    	</div>
+    </div>
+    """
+  end
 end
