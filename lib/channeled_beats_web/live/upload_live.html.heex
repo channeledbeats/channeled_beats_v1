@@ -1,16 +1,12 @@
 <div class="font-bold text-3xl mb-10 text-center">Upload a Beat</div>
 
 <div class="border-2 border-brand rounded divide-brand divide-y-2 divide-solid">
-  <div>
-    <button
-      type="button"
-      class="block w-full py-6 px-4 text-xl font-bold bg-zinc-200 flex"
-      phx-click="select-section"
-      phx-value-section="fl-studio-tutorial"
-    >
-      <div class="grow">How do I Export a Beat from FL Studio?</div>
-      <.icon name="hero-check-circle" class="h-8 w-8 text-brand" />
-    </button>
+  <.collapsable
+    done={true}
+    label="How do I Export a Beat from FL Studio?"
+    name="fl-studio-tutorial"
+    selected_collapsable={@selected_collapsable}
+  >
     <div class="px-10">
       <ul class="list-disc text-lg">
         <li class="my-6">
@@ -27,7 +23,7 @@
         </li>
       </ul>
     </div>
-  </div>
+  </.collapsable>
 
   <.collapsable
     done={false}

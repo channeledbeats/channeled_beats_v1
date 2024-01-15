@@ -27,7 +27,7 @@ defmodule ChanneledBeatsWeb.UploadLive do
 
     icon_color =
       if assigns.done do
-        "text-brand"
+        "text-good"
       else
         "text-amber-500"
       end
