@@ -5,11 +5,23 @@ defmodule ChanneledBeatsWeb.UploadLive do
     form =
       AshPhoenix.Form.for_create(ChanneledBeats.MainApi.Beat, :create,
         api: ChanneledBeats.MainApi,
-        forms: [auto?: true]
+        forms: [
+          auto?: true,
+          # artist: [
+          #   resource: ChanneledBeats.Accounts.User,
+          #   update_action: :update,
+          #   type: :list
+          # ]
+        ]
       )
-      
+      |> to_form()
 
-    {:ok, socket |> assign(:selected_collapsable, "fl-studio-tutorial")}
+    form |> IO.inspect()
+
+    {:ok,
+     socket
+     |> assign(:form, form)
+     |> assign(:selected_collapsable, "fl-studio-tutorial")}
   end
 
   def handle_event("select-collapsable", %{"name" => name}, socket) do
@@ -22,6 +34,12 @@ defmodule ChanneledBeatsWeb.UploadLive do
       end
 
     {:noreply, socket |> assign(:selected_collapsable, name)}
+  end
+
+  def handle_event("validate", %{"form" => params}, socket) do
+    params |> IO.inspect()
+
+    {:noreply, socket}
   end
 
   def collapsable(assigns) do

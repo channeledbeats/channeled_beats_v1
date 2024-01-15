@@ -1,4 +1,4 @@
-<.simple_form for={nil} phx-change="validate" phx-submit="submit">
+<.simple_form for={@form} phx-change="validate" phx-submit="submit">
   <div class="border-2 border-brand rounded-lg overflow-hidden divide-brand divide-y-2 divide-solid">
     <.collapsable
       done={true}
@@ -32,7 +32,7 @@
       selected_collapsable={@selected_collapsable}
     >
       <div class="p-10">
-        <!-- <.input type="text" label="Arist Name" field={@form[:artist_name]} /> -->
+        <.input type="text" label="Artist Name" field={@form[:name]} />
       </div>
     </.collapsable>
 

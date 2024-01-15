@@ -8,6 +8,10 @@ defmodule ChanneledBeats.MainApi.Channel do
     repo ChanneledBeats.Repo
   end
 
+  actions do
+    defaults [:read, :create, :update]
+  end
+
   attributes do
     uuid_primary_key(:id)
 
@@ -16,6 +20,8 @@ defmodule ChanneledBeats.MainApi.Channel do
   end
 
   relationships do
-     belongs_to :beat, ChanneledBeats.MainApi.Beat 
+    belongs_to :beat, ChanneledBeats.MainApi.Beat do
+      attribute_writable? true
+    end
   end
 end
