@@ -9,7 +9,8 @@ module.exports = {
   content: [
     "./js/**/*.js",
     "../lib/channeled_beats_web.ex",
-    "../lib/channeled_beats_web/**/*.*ex"
+    "../lib/channeled_beats_web/**/*.*ex",
+    "../deps/ash_authentication_phoenix/**/*.ex",
   ],
   theme: {
     extend: {

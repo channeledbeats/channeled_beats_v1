@@ -1,5 +1,8 @@
 defmodule ChanneledBeats.Repo do
-  use Ecto.Repo,
-    otp_app: :channeled_beats,
-    adapter: Ecto.Adapters.Postgres
+  use AshPostgres.Repo,
+    otp_app: :channeled_beats
+
+  def installed_extensions do
+    ["uuid-ossp", "citext"]
+  end
 end

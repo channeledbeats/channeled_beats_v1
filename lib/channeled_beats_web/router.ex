@@ -1,5 +1,6 @@
 defmodule ChanneledBeatsWeb.Router do
   use ChanneledBeatsWeb, :router
+  use AshAuthentication.Phoenix.Router
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -18,6 +19,11 @@ defmodule ChanneledBeatsWeb.Router do
     pipe_through :browser
 
     live "/", LandingLive, :index
+
+    sign_in_route register_path: "/register", reset_path: "/password-reset"
+    sign_out_route AuthController
+    auth_routes_for ChanneledBeats.Accounts.User, to: AuthController
+    reset_route []
   end
 
   # Other scopes may use custom stacks.

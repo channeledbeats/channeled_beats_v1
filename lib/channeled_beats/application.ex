@@ -17,7 +17,8 @@ defmodule ChanneledBeats.Application do
       # Start a worker by calling: ChanneledBeats.Worker.start_link(arg)
       # {ChanneledBeats.Worker, arg},
       # Start to serve requests, typically the last entry
-      ChanneledBeatsWeb.Endpoint
+      ChanneledBeatsWeb.Endpoint,
+      {AshAuthentication.Supervisor, otp_app: :channeled_beats}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

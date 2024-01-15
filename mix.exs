@@ -52,9 +52,9 @@ defmodule ChanneledBeats.MixProject do
       {:dns_cluster, "~> 0.1.1"},
       {:plug_cowboy, "~> 2.5"},
 			{:ash, "~> 2.17"},
-      # {:ash_authentication, "~> 3.12"},
-      # {:ash_authentication_phoenix, "~> 1.9"},
-      # {:ash_postgres, "~> 1.3"},
+      {:ash_authentication, "~> 3.12"},
+      {:ash_authentication_phoenix, "~> 1.9"},
+      {:ash_postgres, "~> 1.3"},
       {:ash_phoenix, "~> 1.2"},
       {:mix_test_watch, "~> 1.0", only: [:dev, :test], runtime: false}
     ]
