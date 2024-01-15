@@ -15,8 +15,6 @@ defmodule ChanneledBeatsWeb.Router do
   scope "/", ChanneledBeatsWeb do
     pipe_through :browser
 
-    # live "/", LandingLive, :index
-
     sign_in_route register_path: "/create-account", reset_path: "/password-reset"
     sign_out_route AuthController
     auth_routes_for ChanneledBeats.Accounts.User, to: AuthController
@@ -24,7 +22,7 @@ defmodule ChanneledBeatsWeb.Router do
 
     ash_authentication_live_session :authentication_required,
       on_mount: {ChanneledBeatsWeb.LiveUserAuth, :live_user_required} do
-      live "/user", LandingLive, :index
+      live "/upload", UploadLive, :index
     end
 
     ash_authentication_live_session :authentication_optional,
