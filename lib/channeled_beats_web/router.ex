@@ -9,27 +9,29 @@ defmodule ChanneledBeatsWeb.Router do
     plug :put_root_layout, html: {ChanneledBeatsWeb.Layouts, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
-  end
-
-  pipeline :api do
-    plug :accepts, ["json"]
+    plug :load_from_session
   end
 
   scope "/", ChanneledBeatsWeb do
     pipe_through :browser
 
-    live "/", LandingLive, :index
+    # live "/", LandingLive, :index
 
     sign_in_route register_path: "/create-account", reset_path: "/password-reset"
     sign_out_route AuthController
     auth_routes_for ChanneledBeats.Accounts.User, to: AuthController
     reset_route []
-  end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", ChanneledBeatsWeb do
-  #   pipe_through :api
-  # end
+    ash_authentication_live_session :authentication_required,
+      on_mount: {ChanneledBeatsWeb.LiveUserAuth, :live_user_required} do
+      live "/user", LandingLive, :index
+    end
+
+    ash_authentication_live_session :authentication_optional,
+      on_mount: {ChanneledBeatsWeb.LiveUserAuth, :live_user_optional} do
+      live "/", LandingLive, :index
+    end
+  end
 
   # Enable LiveDashboard and Swoosh mailbox preview in development
   if Application.compile_env(:channeled_beats, :dev_routes) do
