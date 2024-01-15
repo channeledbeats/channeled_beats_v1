@@ -1,5 +1,40 @@
-<div>
-  <.link patch={~p"/export-fl-studio"} class="text-2xl hover:text-zinc-700 underline">
-    How do I Export a Beat from FL Studio?
-  </.link>
+<div class="font-bold text-3xl mb-10 text-center">Upload a Beat</div>
+
+<div class="border-2 border-brand rounded divide-brand divide-y-2 divide-solid">
+  <div>
+    <button
+      type="button"
+      class="block w-full py-6 px-4 text-xl font-bold bg-zinc-200 flex"
+      phx-click="select-section"
+      phx-value-section="fl-studio-tutorial"
+    >
+      <div class="grow">How do I Export a Beat from FL Studio?</div>
+      <.icon name="hero-check-circle" class="h-8 w-8 text-brand" />
+    </button>
+    <div class="px-10">
+      <ul class="list-disc text-lg">
+        <li class="my-6">
+          Click <b>File</b>, select <b>Export</b>, and ensure the "wav" filetype is selected.
+        </li>
+        <li class="my-6">
+          Select the location you want to export to, name your folder, then click <b>Save</b>.
+        </li>
+        <li class="my-6">
+          Enable <b>Split mixer tracks</b> in the <i>Miscellaneous</i> section
+        </li>
+        <li class="my-6">
+          In the Render window that appears, change the settings as needed and click <b>Start</b>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <.collapsable
+    done={false}
+    label="Album"
+    name="album"
+    selected_collapsable={@selected_collapsable}
+  >
+    <div class="p-10">TODO Album</div>
+  </.collapsable>
 </div>
