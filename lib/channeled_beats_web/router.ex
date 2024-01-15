@@ -28,6 +28,7 @@ defmodule ChanneledBeatsWeb.Router do
     ash_authentication_live_session :authentication_optional,
       on_mount: {ChanneledBeatsWeb.LiveUserAuth, :live_user_optional} do
       live "/", LandingLive, :index
+      live "/export-fl-studio", ExportFLStudioLive, :index
     end
   end
 
