@@ -1,99 +1,104 @@
-<div class="border-2 border-brand rounded-lg overflow-hidden divide-brand divide-y-2 divide-solid">
-  <.collapsable
-    done={true}
-    label="How do I Export a Beat from FL Studio?"
-    name="fl-studio-tutorial"
-    selected_collapsable={@selected_collapsable}
-  >
-    <div class="px-10">
-      <ul class="list-disc text-lg">
-        <li class="my-6">
-          Click <b>File</b>, select <b>Export</b>, and ensure the "wav" filetype is selected.
-        </li>
-        <li class="my-6">
-          Select the location you want to export to, name your folder, then click <b>Save</b>.
-        </li>
-        <li class="my-6">
-          Enable <b>Split mixer tracks</b> in the <i>Miscellaneous</i> section
-        </li>
-        <li class="my-6">
-          In the Render window that appears, change the settings as needed and click <b>Start</b>
-        </li>
-      </ul>
-    </div>
-  </.collapsable>
+<.simple_form for={nil} phx-change="validate" phx-submit="submit">
+  <div class="border-2 border-brand rounded-lg overflow-hidden divide-brand divide-y-2 divide-solid">
+    <.collapsable
+      done={true}
+      label="How do I Export a Beat from FL Studio?"
+      name="fl-studio-tutorial"
+      selected_collapsable={@selected_collapsable}
+    >
+      <div class="px-10">
+        <ul class="list-disc text-lg">
+          <li class="my-6">
+            Click <b>File</b>, select <b>Export</b>, and ensure the "wav" filetype is selected.
+          </li>
+          <li class="my-6">
+            Select the location you want to export to, name your folder, then click <b>Save</b>.
+          </li>
+          <li class="my-6">
+            Enable <b>Split mixer tracks</b> in the <i>Miscellaneous</i> section
+          </li>
+          <li class="my-6">
+            In the Render window that appears, change the settings as needed and click
+            <b>Start</b>
+          </li>
+        </ul>
+      </div>
+    </.collapsable>
 
-  <.collapsable
-    done={true}
-    label="Artist Name"
-    name="artist-name"
-    selected_collapsable={@selected_collapsable}
-  >
-    <div class="p-10">TODO Artist Name</div>
-  </.collapsable>
+    <.collapsable
+      done={true}
+      label="Artist Name"
+      name="artist-name"
+      selected_collapsable={@selected_collapsable}
+    >
+      <div class="p-10">
+        <!-- <.input type="text" label="Arist Name" field={@form[:artist_name]} /> -->
+      </div>
+    </.collapsable>
 
-  <.collapsable
-    done={false}
-    label="Beat Name"
-    name="beat-name"
-    selected_collapsable={@selected_collapsable}
-  >
-    <div class="p-10">TODO Artist Name</div>
-  </.collapsable>
+    <.collapsable
+      done={false}
+      label="Beat Name"
+      name="beat-name"
+      selected_collapsable={@selected_collapsable}
+    >
+      <div class="p-10">TODO Artist Name</div>
+    </.collapsable>
 
-  <.collapsable
-    done={false}
-    label="Album Name and Cover Art"
-    name="album"
-    selected_collapsable={@selected_collapsable}
-  >
-    <div class="p-10">TODO Album</div>
-  </.collapsable>
+    <.collapsable
+      done={false}
+      label="Album Name and Cover Art"
+      name="album"
+      selected_collapsable={@selected_collapsable}
+    >
+      <div class="p-10">TODO Album</div>
+    </.collapsable>
 
-  <.collapsable
-    done={false}
-    label="Is this Beat a Remix?"
-    name="remix"
-    selected_collapsable={@selected_collapsable}
-  >
-    <div class="p-10">TODO Remix</div>
-  </.collapsable>
+    <.collapsable
+      done={false}
+      label="Is this Beat a Remix?"
+      name="remix"
+      selected_collapsable={@selected_collapsable}
+    >
+      <div class="p-10">TODO Remix</div>
+    </.collapsable>
 
-  <.collapsable
-    done={false}
-    label="Select Channel Files"
-    name="channel-files"
-    selected_collapsable={@selected_collapsable}
-  >
-    <div class="p-10">TODO select channel files</div>
-  </.collapsable>
+    <.collapsable
+      done={false}
+      label="Select Channel Files"
+      name="channel-files"
+      selected_collapsable={@selected_collapsable}
+    >
+      <div class="p-10">TODO select channel files</div>
+    </.collapsable>
 
-  <.collapsable
-    done={false}
-    disabled
-    label="Group Channels"
-    name="group-channels"
-    selected_collapsable={@selected_collapsable}
-  >
-    <div class="p-10">TODO group channels</div>
-  </.collapsable>
+    <.collapsable
+      done={false}
+      disabled
+      label="Group Channels"
+      name="group-channels"
+      selected_collapsable={@selected_collapsable}
+    >
+      <div class="p-10">TODO group channels</div>
+    </.collapsable>
 
-  <.collapsable
-    done={false}
-    disabled
-    label="Channel Selection Presets"
-    name="selection-presets"
-    selected_collapsable={@selected_collapsable}
-  >
-    <div class="p-10">
-      Selections of certain groups: Like for example "Instrumental", or "Voice Only".
-    </div>
-  </.collapsable>
-</div>
+    <.collapsable
+      done={false}
+      disabled
+      label="Channel Selection Presets"
+      name="selection-presets"
+      selected_collapsable={@selected_collapsable}
+    >
+      <div class="p-10">
+        Selections of certain groups: Like for example "Instrumental", or "Voice Only".
+      </div>
+    </.collapsable>
+  </div>
 
-<button
-  type="submit"
-  class="w-full font-bold text-2xl my-10 text-center border-2 rounded-lg underline text-zinc-300 border-zinc-300 p-6 cursor-not-allowed"
->
-  Begin Upload
-</button>
+  <button
+    type="submit"
+    class="w-full font-bold text-2xl my-10 text-center border-2 rounded-lg underline text-zinc-300 border-zinc-300 p-6 cursor-not-allowed"
+  >
+    Begin Upload
+  </button>
+</.simple_form>

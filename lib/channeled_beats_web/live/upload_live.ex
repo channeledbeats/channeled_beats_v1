@@ -2,6 +2,13 @@ defmodule ChanneledBeatsWeb.UploadLive do
   use ChanneledBeatsWeb, :live_view
 
   def mount(_params, _session, socket) do
+    form =
+      AshPhoenix.Form.for_create(ChanneledBeats.MainApi.Beat, :create,
+        api: ChanneledBeats.MainApi,
+        forms: [auto?: true]
+      )
+      
+
     {:ok, socket |> assign(:selected_collapsable, "fl-studio-tutorial")}
   end
 
