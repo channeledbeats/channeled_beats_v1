@@ -24,8 +24,26 @@
   </.collapsable>
 
   <.collapsable
+    done={true}
+    label="Artist Name"
+    name="artist-name"
+    selected_collapsable={@selected_collapsable}
+  >
+    <div class="p-10">TODO Artist Name</div>
+  </.collapsable>
+
+  <.collapsable
     done={false}
-    label="Album"
+    label="Beat Name"
+    name="beat-name"
+    selected_collapsable={@selected_collapsable}
+  >
+    <div class="p-10">TODO Artist Name</div>
+  </.collapsable>
+
+  <.collapsable
+    done={false}
+    label="Album Name and Cover Art"
     name="album"
     selected_collapsable={@selected_collapsable}
   >
@@ -44,13 +62,38 @@
   <.collapsable
     done={false}
     label="Select Channel Files"
-    name="channels"
+    name="channel-files"
     selected_collapsable={@selected_collapsable}
   >
     <div class="p-10">TODO select channel files</div>
   </.collapsable>
+
+  <.collapsable
+    done={false}
+    disabled
+    label="Group Channels"
+    name="group-channels"
+    selected_collapsable={@selected_collapsable}
+  >
+    <div class="p-10">TODO group channels</div>
+  </.collapsable>
+
+  <.collapsable
+    done={false}
+    disabled
+    label="Channel Selection Presets"
+    name="selection-presets"
+    selected_collapsable={@selected_collapsable}
+  >
+    <div class="p-10">
+      Selections of certain groups: Like for example "Instrumental", or "Voice Only".
+    </div>
+  </.collapsable>
 </div>
 
-<div class="font-bold text-2xl my-10 text-center border-2 rounded-lg">
-  <button type="submit" class="underline text-zinc-300 border-zinc-500 p-6 cursor-not-allowed">Begin Upload</button>
-</div>
+<button
+  type="submit"
+  class="w-full font-bold text-2xl my-10 text-center border-2 rounded-lg underline text-zinc-300 border-zinc-300 p-6 cursor-not-allowed"
+>
+  Begin Upload
+</button>

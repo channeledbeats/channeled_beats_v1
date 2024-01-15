@@ -18,47 +18,48 @@ defmodule ChanneledBeatsWeb.UploadLive do
   end
 
   def collapsable(assigns) do
-    icon_name =
-      if assigns.done do
-        "hero-check-circle"
-      else
-        "hero-exclamation-circle"
-      end
-
-    icon_color =
-      if assigns.done do
-        "text-good"
-      else
-        "text-warning"
-      end
-
-    selected = assigns.name == assigns.selected_collapsable
-
-    title_bg_color =
-      if selected do
-        "bg-zinc-200"
-      else
-        ""
-      end
+    assigns =
+      assigns
+      |> assign(:disabled, assigns[:disabled] == true)
+      |> assign(:selected, assigns.name == assigns.selected_collapsable)
+      |> assign(
+        :icon_name,
+        if assigns.done do
+          "hero-check-circle"
+        else
+          "hero-exclamation-circle"
+        end
+      )
+      |> assign(
+        :icon_color,
+        if assigns.done do
+          "text-good"
+        else
+          "text-warning"
+        end
+      )
 
     ~H"""
     <div>
       <button
         type="button"
-        class={["block w-full py-6 px-4 text-xl font-bold flex", title_bg_color]}
+        disabled={
+          if @disabled do
+            true
+          else
+            false
+          end
+        }
+        class={["block w-full py-6 px-4 text-xl font-bold flex", @selected && "bg-zinc-200"]}
         phx-click="select-collapsable"
         phx-value-name={@name}
       >
-        <div class="grow"><%= @label %></div>
-        <.icon
-          name={icon_name}
-          class={[
-            "h-8 w-8",
-            icon_color
-          ]}
-        />
+        <div class={["grow", @disabled && "text-zinc-300"]}><%= @label %></div>
+        <span class={[@icon_color, @disabled && "hidden"]}>
+          <.icon name={@icon_name} class="h-8 w-8" />
+        </span>
       </button>
-      <div class={!selected && "hidden"}><%= render_slot(@inner_block) %></div>
+      <div class={!@selected && "hidden"}><%= render_slot(@inner_block) %></div>
     </div>
     """
   end
