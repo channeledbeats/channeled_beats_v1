@@ -4,13 +4,19 @@
       <div class="hidden md:block">Channeled<span class="font-bold">Beats</span></div>
     </div>
     <div class="flex items-center gap-4 font-semibold leading-6 text-zinc-900">
-      <button class="hover:text-zinc-700">
-        Create Account
-      </button>
-      <button class="hover:text-zinc-700">
-        Sign In
-      </button>
-      
+      <%= if @user do %>
+        <.link patch={~p"/sign-out"} class="hover:text-zinc-700">
+          Sign Out
+        </.link>
+      <% else %>
+        <.link patch={~p"/create-account"} class="hover:text-zinc-700">
+          Create Account
+        </.link>
+        <.link patch={~p"/sign-in"} class="hover:text-zinc-700">
+          Sign In
+        </.link>
+      <% end %>
+
       <a
         href="https://hexdocs.pm/phoenix/overview.html"
         class="rounded-lg bg-zinc-100 px-2 py-1 hover:bg-zinc-200/80"

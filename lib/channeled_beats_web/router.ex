@@ -20,7 +20,7 @@ defmodule ChanneledBeatsWeb.Router do
 
     live "/", LandingLive, :index
 
-    sign_in_route register_path: "/register", reset_path: "/password-reset"
+    sign_in_route register_path: "/create-account", reset_path: "/password-reset"
     sign_out_route AuthController
     auth_routes_for ChanneledBeats.Accounts.User, to: AuthController
     reset_route []
