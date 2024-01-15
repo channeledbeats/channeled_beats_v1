@@ -1,6 +1,4 @@
-<div class="font-bold text-3xl mb-10 text-center">Upload a Beat</div>
-
-<div class="border-2 border-brand rounded divide-brand divide-y-2 divide-solid">
+<div class="border-2 border-brand rounded-lg overflow-hidden divide-brand divide-y-2 divide-solid">
   <.collapsable
     done={true}
     label="How do I Export a Beat from FL Studio?"
@@ -33,4 +31,26 @@
   >
     <div class="p-10">TODO Album</div>
   </.collapsable>
+
+  <.collapsable
+    done={false}
+    label="Is this Beat a Remix?"
+    name="remix"
+    selected_collapsable={@selected_collapsable}
+  >
+    <div class="p-10">TODO Remix</div>
+  </.collapsable>
+
+  <.collapsable
+    done={false}
+    label="Select Channel Files"
+    name="channels"
+    selected_collapsable={@selected_collapsable}
+  >
+    <div class="p-10">TODO select channel files</div>
+  </.collapsable>
+</div>
+
+<div class="font-bold text-2xl my-10 text-center border-2 rounded-lg">
+  <button type="submit" class="underline text-zinc-300 border-zinc-500 p-6 cursor-not-allowed">Begin Upload</button>
 </div>

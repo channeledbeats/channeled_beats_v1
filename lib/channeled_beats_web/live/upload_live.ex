@@ -29,7 +29,7 @@ defmodule ChanneledBeatsWeb.UploadLive do
       if assigns.done do
         "text-good"
       else
-        "text-amber-500"
+        "text-warning"
       end
 
     selected = assigns.name == assigns.selected_collapsable

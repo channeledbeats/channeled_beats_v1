@@ -17,6 +17,7 @@ module.exports = {
       colors: {
         brand: "#6cd800",
         good: "#6cd800",
+        warning: "#f59e0b",
       }
     },
   },
