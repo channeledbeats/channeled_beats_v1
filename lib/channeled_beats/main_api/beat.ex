@@ -14,11 +14,11 @@ defmodule ChanneledBeats.MainApi.Beat do
     create :create do
       argument(:channels, {:array, :map})
       argument(:artist, :map)
-      #   argument(:remix_of, :map)
+      argument(:remix_of, :map)
 
       change(manage_relationship(:channels, type: :create))
       change(manage_relationship(:artist, type: :append))
-      #   change(manage_relationship(:remix_of, type: :create))
+      change(manage_relationship(:remix_of, type: :append))
     end
   end
 
