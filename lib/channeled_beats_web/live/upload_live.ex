@@ -3,20 +3,23 @@ defmodule ChanneledBeatsWeb.UploadLive do
 
   def mount(_params, _session, socket) do
     socket.assigns.current_user.artist_name |> IO.inspect()
-    
+
     form =
       AshPhoenix.Form.for_create(ChanneledBeats.MainApi.Beat, :create,
         api: ChanneledBeats.MainApi,
         forms: [
+          # auto?: true,
           artist: [
-            api: ChanneledBeats.Accounts,
             resource: ChanneledBeats.Accounts.User,
-            data: %{artist_name: socket.assigns.current_user.artist_name}, #socket.assigns.current_user,
-            update_action: :update
+            data: %{artist_name: socket.assigns.current_user.artist_name},
+            update_action: :update,
+            type: :single
           ]
         ]
       )
       |> to_form()
+
+    form |> IO.inspect()
 
     {:ok,
      socket

@@ -12,9 +12,9 @@ defmodule ChanneledBeats.MainApi.Beat do
     defaults [:read]
 
     create :create do
-      argument(:channels, {:array, :map})
-      argument(:artist, :map)
-      argument(:remix_of, :map)
+      argument(:channels, {:array, :map}, allow_nil?: false)
+      argument(:artist, :map, allow_nil?: false)
+      argument(:remix_of, :map, allow_nil?: true)
 
       change(manage_relationship(:channels, type: :create))
       change(manage_relationship(:artist, type: :append))
