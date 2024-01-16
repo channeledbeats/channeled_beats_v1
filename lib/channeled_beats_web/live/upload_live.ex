@@ -69,7 +69,7 @@ defmodule ChanneledBeatsWeb.UploadLive do
 
     ~H"""
     <div>
-      <button
+      <button id={"collapsable-" <> @name}
         type="button"
         disabled={
           if @disabled do
