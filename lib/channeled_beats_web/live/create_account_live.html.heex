@@ -5,6 +5,13 @@
   phx-submit="submit"
   action={@action}
 >
+  <%= if @account_required do %>
+    <div class="flex items-center my-10 text-2xl text-warning">
+      <div>Account Required</div>
+      <div class="ml-2"><.icon name="hero-exclamation-circle" class="h-8 w-8" /></div>
+    </div>
+  <% end %>
+
   <div class="text-3xl">Create Account</div>
 
   <.input type="text" label="Username / Artist Name" field={@form[:username]} />
@@ -13,7 +20,7 @@
   <.input type="password" label="Password Confirmation" field={@form[:password_confirmation]} />
 
   <div class="flex justify-between">
-    <.link patch={~p"/sign-in"} class="py-4 underline hover:text-zinc-700">
+    <.link patch={@sign_in_url} class="py-4 underline hover:text-zinc-700">
       Sign In
     </.link>
 

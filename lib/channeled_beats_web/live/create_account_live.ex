@@ -14,7 +14,9 @@ defmodule ChanneledBeatsWeb.CreateAccountLive do
     {:ok,
      socket
      |> assign(:form, form)
+     |> assign(:account_required, params["return_to"] != nil)
      |> assign(:action, ~p"/auth/user/password/register?return_to=#{params["return_to"] || ""}")
+     |> assign(:sign_in_url, ~p"/sign-in?return_to=#{params["return_to"] || ""}")
      |> assign(:trigger_action, false)}
   end
 
