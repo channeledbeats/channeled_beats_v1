@@ -47,6 +47,10 @@ defmodule ChanneledBeats.Accounts.User do
   end
 
   identities do
-    identity(:unique_email, [:email])
+    identity(:unique_email, [:email]) do
+      eager_check_with ChanneledBeats.Accounts
+    end
+    identity(:unique_username, [:username]) do
+      eager_check_with ChanneledBeats.Accounts end
   end
 end
