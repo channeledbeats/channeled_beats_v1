@@ -18,9 +18,11 @@
   <.input type="password" label="Password" field={@form[:password]} />
 
   <div class="flex justify-between">
-    <.link patch={@create_account_url} class="py-4 underline hover:text-zinc-700">
-      Create Account
-    </.link>
+    <div class="py-4">
+      <.link patch={@create_account_url} class="underline hover:text-zinc-700">Create Account</.link>
+      - 
+      If you need an Account
+    </div>
 
     <button type="submit" class="p-4 border border-zinc-400 rounded-lg">Sign In</button>
   </div>
