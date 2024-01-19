@@ -2,8 +2,6 @@ defmodule ChanneledBeatsWeb.UploadLive do
   use ChanneledBeatsWeb, :live_view
 
   def mount(_params, _session, socket) do
-    socket.assigns.current_user.artist_name |> IO.inspect()
-
     form =
       AshPhoenix.Form.for_create(ChanneledBeats.MainApi.Beat, :create,
         api: ChanneledBeats.MainApi,
@@ -11,7 +9,7 @@ defmodule ChanneledBeatsWeb.UploadLive do
           # auto?: true,
           artist: [
             resource: ChanneledBeats.Accounts.User,
-            data: %{artist_name: socket.assigns.current_user.artist_name},
+            data: socket.assigns.current_user,
             update_action: :update,
             type: :single
           ]
