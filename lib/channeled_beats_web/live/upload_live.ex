@@ -23,6 +23,10 @@ defmodule ChanneledBeatsWeb.UploadLive do
      |> assign(:selected_collapsable, "fl-studio-tutorial")}
   end
 
+  def handle_params(_params, _uri, socket) do
+    {:noreply, socket}
+  end
+
   def handle_event("select-collapsable", %{"name" => name}, socket) do
     # Deselect a collapsable if it was already selected 
     name =
@@ -65,7 +69,8 @@ defmodule ChanneledBeatsWeb.UploadLive do
 
     ~H"""
     <div>
-      <button id={"collapsable-" <> @name}
+      <button
+        id={"collapsable-" <> @name}
         type="button"
         disabled={
           if @disabled do
