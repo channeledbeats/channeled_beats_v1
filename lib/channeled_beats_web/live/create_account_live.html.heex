@@ -20,9 +20,11 @@
   <.input type="password" label="Password Confirmation" field={@form[:password_confirmation]} />
 
   <div class="flex justify-between">
-    <.link patch={@sign_in_url} class="py-4 underline hover:text-zinc-700">
-      Sign In
-    </.link>
+    <div class="py-4">
+      <.link patch={@sign_in_url} class="underline hover:text-zinc-700">Sign In</.link>
+      - 
+      If you have an Account
+    </div>
 
     <button type="submit" class="p-4 border border-zinc-400 rounded-lg">Create Account</button>
   </div>
