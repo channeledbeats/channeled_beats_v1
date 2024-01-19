@@ -1,0 +1,27 @@
+<.simple_form
+  for={@form}
+  phx-trigger-action={@trigger_action}
+  phx-change="validate"
+  phx-submit="submit"
+  action={@action}
+>
+  <%= if @account_required do %>
+    <div class="flex items-center my-10 text-2xl text-warning">
+      <div>Account Required</div>
+      <div class="ml-2"><.icon name="hero-exclamation-circle" class="h-8 w-8" /></div>
+    </div>
+  <% end %>
+
+  <div class="text-3xl">Sign In</div>
+
+  <.input type="email" label="Email" field={@form[:email]} />
+  <.input type="password" label="Password" field={@form[:password]} />
+
+  <div class="flex justify-between">
+    <.link patch={@create_account_url} class="py-4 underline hover:text-zinc-700">
+      Create Account
+    </.link>
+
+    <button type="submit" class="p-4 border border-zinc-400 rounded-lg">Sign In</button>
+  </div>
+</.simple_form>

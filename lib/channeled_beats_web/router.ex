@@ -33,6 +33,7 @@ defmodule ChanneledBeatsWeb.Router do
     ash_authentication_live_session :authentication_none,
       on_mount: {ChanneledBeatsWeb.LiveUserAuth, :live_no_user} do
       live "/create-account", CreateAccountLive, :index
+      live "/sign-in", SignInLive, :index
     end
   end
 
