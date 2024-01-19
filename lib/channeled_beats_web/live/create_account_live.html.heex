@@ -7,15 +7,10 @@
 >
   <div class="text-3xl">Create Account</div>
 
-  <.input name={:username} type="text" label="Username / Artist Name" field={@form[:username]} />
-  <.input name={:email} type="email" label="Email" field={@form[:email]} />
-  <.input name={:password} type="password" label="Password" field={@form[:password]} />
-  <.input
-    name={:password_confirmation}
-    type="password"
-    label="Password Confirmation"
-    field={@form[:password_confirmation]}
-  />
+  <.input type="text" label="Username / Artist Name" field={@form[:username]} />
+  <.input type="email" label="Email" field={@form[:email]} />
+  <.input type="password" label="Password" field={@form[:password]} />
+  <.input type="password" label="Password Confirmation" field={@form[:password_confirmation]} />
 
   <div class="flex justify-between">
     <.link patch={~p"/sign-in"} class="py-4 underline hover:text-zinc-700">

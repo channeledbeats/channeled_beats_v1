@@ -6,7 +6,8 @@ defmodule ChanneledBeatsWeb.CreateAccountLive do
   def mount(_params, _session, socket) do
     form =
       AshPhoenix.Form.for_create(ChanneledBeats.Accounts.User, :register_with_password,
-        api: ChanneledBeats.Accounts
+        api: ChanneledBeats.Accounts,
+        as: "user"
       )
       |> to_form()
 
@@ -16,16 +17,12 @@ defmodule ChanneledBeatsWeb.CreateAccountLive do
      |> assign(:trigger_action, false)}
   end
 
-  def handle_event("validate", params, socket) do
-
-    params |> IO.inspect()
-    
+  def handle_event("validate", %{"user" => params}, socket) do
     form = AshPhoenix.Form.validate(socket.assigns.form, params)
-
     {:noreply, socket |> assign(:form, form)}
   end
 
-  def handle_event("submit", params, socket) do
+  def handle_event("submit", %{"user" => params}, socket) do
     # TODO redirect to previously attempted url
     form = AshPhoenix.Form.validate(socket.assigns.form, params)
 
