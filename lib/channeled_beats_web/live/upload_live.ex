@@ -17,8 +17,6 @@ defmodule ChanneledBeatsWeb.UploadLive do
       )
       |> to_form()
 
-    # form |> IO.inspect()
-
     {:ok,
      socket
      |> assign(:form, form)
