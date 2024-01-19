@@ -1,7 +1,7 @@
 defmodule ChanneledBeatsWeb.LandingLive do
   use ChanneledBeatsWeb, :live_view
 
-  def mount(params, session, socket) do
+  def mount(_params, session, socket) do
     beats = [
       %{name: "Beat 1", artist: "Artist 1", album: %{name: "Album 1"}},
       %{name: "Beat 2", artist: "Artist 1", album: %{name: "Album 2"}},

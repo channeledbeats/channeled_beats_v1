@@ -1,0 +1,16 @@
+<.simple_form for={@form} phx-change="validate" phx-submit="submit">
+  <div class="text-3xl">Create Account</div>
+
+  <.input type="text" label="Username / Artist Name" field={@form[:username]} />
+  <.input type="email" label="Email" field={@form[:email]} />
+  <.input type="password" label="Password" field={@form[:password]} />
+  <.input type="password" label="Password Confirmation" field={@form[:password_confirmation]} />
+
+  <div class="flex justify-between">
+    <.link patch={~p"/sign-in"} class="py-4 underline hover:text-zinc-700">
+      Sign In
+    </.link>
+    
+    <button type="submit" class="p-4 border border-zinc-400 rounded-lg">Create Account</button>
+  </div>
+</.simple_form>
