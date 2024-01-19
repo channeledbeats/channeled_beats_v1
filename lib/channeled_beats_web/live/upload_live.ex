@@ -17,7 +17,7 @@ defmodule ChanneledBeatsWeb.UploadLive do
       )
       |> to_form()
 
-    form |> IO.inspect()
+    # form |> IO.inspect()
 
     {:ok,
      socket
@@ -38,9 +38,9 @@ defmodule ChanneledBeatsWeb.UploadLive do
   end
 
   def handle_event("validate", %{"form" => params}, socket) do
-    params |> IO.inspect()
+    form = AshPhoenix.Form.validate(socket.assigns.form, params)
 
-    {:noreply, socket}
+    {:noreply, socket |> assign(:form, form)}
   end
 
   def collapsable(assigns) do
