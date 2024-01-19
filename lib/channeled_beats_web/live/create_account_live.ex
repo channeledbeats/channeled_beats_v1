@@ -10,34 +10,28 @@ defmodule ChanneledBeatsWeb.CreateAccountLive do
       )
       |> to_form()
 
-    {:ok, socket |> assign(:form, form)}
+    {:ok,
+     socket
+     |> assign(:form, form)
+     |> assign(:trigger_action, false)}
   end
 
-  def handle_event("validate", %{"form" => params}, socket) do
+  def handle_event("validate", params, socket) do
+
+    params |> IO.inspect()
+    
     form = AshPhoenix.Form.validate(socket.assigns.form, params)
 
     {:noreply, socket |> assign(:form, form)}
   end
 
-  def handle_event("submit", %{"form" => params}, socket) do
-    case AshPhoenix.Form.submit(socket.assigns.form, params: params) do
-      {:ok, _user} ->
-        ChanneledBeats.Accounts.User
-        |> Ash.Query.for_read(:sign_in_with_password,
-          email: params["email"],
-          password: params["password"]
-        )
-        |> ChanneledBeats.Accounts.read!()
-        |> IO.inspect()
+  def handle_event("submit", params, socket) do
+    # TODO redirect to previously attempted url
+    form = AshPhoenix.Form.validate(socket.assigns.form, params)
 
-        {:noreply,
-         socket
-         # TODO redirect to previously attempted url
-         |> push_navigate(to: ~p"/")}
-
-      {:error, form} ->
-        form |> IO.inspect()
-        {:noreply, socket}
-    end
+    {:noreply,
+     socket
+     |> assign(:form, form)
+     |> assign(:trigger_action, form.source.valid?)}
   end
 end

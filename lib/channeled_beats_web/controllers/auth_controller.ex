@@ -12,10 +12,14 @@ defmodule ChanneledBeatsWeb.AuthController do
     |> redirect(to: return_to)
   end
 
-  def failure(conn, _activity, _reason) do
+  def failure(conn, _activity, reason) do
+
+		"failure" |> IO.inspect()
+    reason |> IO.inspect()
+    
     conn
     |> put_status(401)
-    |> render("failure.html")
+    |> redirect(to: ~p"/?failed=true")
   end
 
   def sign_out(conn, _params) do

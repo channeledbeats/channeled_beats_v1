@@ -11,7 +11,12 @@ defmodule ChanneledBeatsWeb.CreateAccountLiveTest do
     })
     |> ChanneledBeats.Accounts.create!()
 
-    
+    ChanneledBeats.Accounts.User
+    |> Ash.Query.for_read(:sign_in_with_password,
+      email: "a@a.a",
+      password: "asdfasdf"
+    )
+    |> ChanneledBeats.Accounts.read!()
 
     # conn = get(conn, ~p"/")
     # assert html_response(conn, 200) =~ "Peace of mind from prototype to production"
