@@ -4,7 +4,7 @@ defmodule ChanneledBeatsWeb.CreateAccountLive do
   use ChanneledBeatsWeb.ValidateSubmit
   import ChanneledBeatsWeb.AddReturnTo
 
-  def mount(params, _session, socket) do
+  def handle_params(params, _uri, socket) do
     [return_to_empty, add_return_to] = init_add_return_to(params)
 
     form =
@@ -14,7 +14,7 @@ defmodule ChanneledBeatsWeb.CreateAccountLive do
       )
       |> to_form()
 
-    {:ok,
+    {:noreply,
      socket
      |> assign(:form, form)
      |> assign(:account_required, !return_to_empty)

@@ -4,9 +4,9 @@ defmodule ChanneledBeatsWeb.SignInLive do
   use ChanneledBeatsWeb.ValidateSubmit
   import ChanneledBeatsWeb.AddReturnTo
 
-  def mount(params, _session, socket) do
+  def handle_params(params, _uri, socket) do
     [return_to_empty, add_return_to] = init_add_return_to(params)
-    
+
     form =
       AshPhoenix.Form.for_action(ChanneledBeats.Accounts.User, :sign_in_with_password,
         api: ChanneledBeats.Accounts,
@@ -14,7 +14,7 @@ defmodule ChanneledBeatsWeb.SignInLive do
       )
       |> to_form()
 
-    {:ok,
+    {:noreply,
      socket
      |> assign(:form, form)
      |> assign(:account_required, !return_to_empty)
