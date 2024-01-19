@@ -8,11 +8,11 @@ defmodule ChanneledBeats.Accounts.User do
 
     attribute(:email, :ci_string, allow_nil?: false)
     attribute(:hashed_password, :string, allow_nil?: false, sensitive?: true)
-    attribute(:artist_name, :ci_string, allow_nil?: false)
+    attribute(:username, :ci_string, allow_nil?: false)
   end
 
   validations do
-    validate string_length(:artist_name, min: 2, max: 50)
+    validate string_length(:username, min: 2, max: 50)
   end
 
   actions do
@@ -26,6 +26,7 @@ defmodule ChanneledBeats.Accounts.User do
       password :password do
         identity_field(:email)
         sign_in_tokens_enabled?(true)
+        register_action_accept([:username])
 
         resettable do
           sender ChanneledBeats.Accounts.SendPasswordResetEmail
