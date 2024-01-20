@@ -20,6 +20,7 @@ defmodule ChanneledBeatsWeb.UploadLive do
     {:ok,
      socket
      |> assign(:form, form)
+     |> assign(:beat_name_done, false)
      |> assign(:selected_collapsable, "fl-studio-tutorial")}
   end
 
@@ -42,7 +43,12 @@ defmodule ChanneledBeatsWeb.UploadLive do
   def handle_event("validate", %{"form" => params}, socket) do
     form = AshPhoenix.Form.validate(socket.assigns.form, params)
 
-    {:noreply, socket |> assign(:form, form)}
+    form |> IO.inspect()
+
+    {:noreply,
+     socket
+     |> assign(:form, form)
+     |> assign(:beat_name_done, MapSet.member?(form.source.touched_forms, "name") && !form.errors[:name])}
   end
 
   def collapsable(assigns) do
