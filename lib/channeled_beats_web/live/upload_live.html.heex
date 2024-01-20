@@ -78,12 +78,29 @@
     </.collapsable>
 
     <.collapsable
-      done={false}
+      done={true}
       label="Is this Beat a Remix?"
       name="remix"
       selected_collapsable={@selected_collapsable}
     >
-      <div class="p-10">TODO Remix</div>
+      <div class="flex justify-center p-10">
+        <div class="flex justify-center border border-zinc-500 rounded-lg divide-x divide-zinc-500 overflow-hidden">
+          <.remix_type selected={@remix_type} type="not" label="Not a Remix" />
+          <.remix_type selected={@remix_type} type="on_cb" label="Song on ChanneledBeats" />
+          <.remix_type selected={@remix_type} type="other" label="Other Song" />
+        </div>
+      </div>
+
+      <%= if @remix_type == "on_cb" do %>
+        <div class="px-10 pb-10">
+          TODO
+        </div>
+      <% end %>
+      <%= if @remix_type == "other" do %>
+        <div class="px-10 pb-10">
+          <.input type="text" label="Remix Original" field={@form[:remix_of_nolink]} />
+        </div>
+      <% end %>
     </.collapsable>
 
     <.collapsable

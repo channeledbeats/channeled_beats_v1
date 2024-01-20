@@ -30,6 +30,7 @@ defmodule ChanneledBeatsWeb.UploadLive do
      |> assign(:form, form)
      |> assign(:beat_name_done, false)
      |> assign(:album_done, false)
+     |> assign(:remix_type, "not")
      |> assign(:selected_collapsable, "fl-studio-tutorial")
      |> allow_upload(:album_cover, accept: ~w(image/*), max_entries: 1)}
   end
@@ -77,8 +78,12 @@ defmodule ChanneledBeatsWeb.UploadLive do
      )}
   end
 
+  def handle_event("select-remix-type", %{"type" => type}, socket) do
+    {:noreply, socket |> assign(:remix_type, type)}
+  end
+
   def augment_params(params, socket) do
-    album_cover = Enum.at(socket.assigns.uploads.album_cover.entries, 0) |> IO.inspect()
+    album_cover = Enum.at(socket.assigns.uploads.album_cover.entries, 0)
 
     extension =
       if album_cover do
@@ -89,6 +94,29 @@ defmodule ChanneledBeatsWeb.UploadLive do
 
     params
     |> put_in(["album", "extension"], extension)
+  end
+
+  def remix_type(assigns) do
+    # assigns =
+    # 	assigns
+    # 	|> assign(:
+
+    ~H"""
+    <div
+      class={[
+        "p-4 select-none",
+        if @selected == @type do
+          "text-gray-500 bg-zinc-200"
+        else
+          "cursor-pointer"
+        end
+      ]}
+      phx-click="select-remix-type"
+      phx-value-type={@type}
+    >
+      <%= @label %>
+    </div>
+    """
   end
 
   def collapsable(assigns) do
