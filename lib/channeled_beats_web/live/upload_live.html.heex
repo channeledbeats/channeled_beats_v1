@@ -109,7 +109,19 @@
       name="channel-files"
       selected_collapsable={@selected_collapsable}
     >
-      <div class="p-10">TODO select channel files</div>
+      <div class="p-10">
+        <.live_file_input upload={@uploads.channels} hidden={true} />
+
+        <%= for entry <- @uploads.channels.entries do %>
+          <.channel entry={entry} />
+        <% end %>
+        
+        <label for={@uploads.channels.ref}>
+          <div class="underline cursor-pointer border border-zinc-300 text-center rounded-lg p-2">
+            <.icon name="hero-plus-solid" class="h-7 w-7" />
+          </div>
+        </label>
+      </div>
     </.collapsable>
 
     <.collapsable

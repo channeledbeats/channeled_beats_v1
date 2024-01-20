@@ -32,7 +32,8 @@ defmodule ChanneledBeatsWeb.UploadLive do
      |> assign(:album_done, false)
      |> assign(:remix_type, "not")
      |> assign(:selected_collapsable, "fl-studio-tutorial")
-     |> allow_upload(:album_cover, accept: ~w(image/*), max_entries: 1)}
+     |> allow_upload(:album_cover, accept: ~w(image/*), max_entries: 1)
+     |> allow_upload(:channels, accept: ~w(audio/*), max_entries: 256)}
   end
 
   def handle_params(_params, _uri, socket) do
@@ -80,6 +81,10 @@ defmodule ChanneledBeatsWeb.UploadLive do
 
   def handle_event("select-remix-type", %{"type" => type}, socket) do
     {:noreply, socket |> assign(:remix_type, type)}
+  end
+
+  def handle_event("remove-channel", %{"entry" => entry}, socket) do
+    {:noreply, socket |> cancel_upload(:channels, entry)}
   end
 
   def augment_params(params, socket) do
@@ -165,5 +170,18 @@ defmodule ChanneledBeatsWeb.UploadLive do
       <div class={!@selected && "hidden"}><%= render_slot(@inner_block) %></div>
     </div>
     """
+  end
+
+  def channel(assigns) do
+   assigns.entry |> IO.inspect()
+
+   ~H"""
+   <div class="p-4 my-4 border border-zinc-300 rounded-lg flex justify-between">
+   		<div><%= Path.rootname(@entry.client_name) %></div>
+   		<div class="cursor-pointer" phx-click="remove-channel" phx-value-entry={@entry.ref}>
+   			<.icon name="hero-x-circle" class="h-7 w-7 mt-[-5px]" />
+   		</div>
+   </div>
+   """
   end
 end
