@@ -29,6 +29,7 @@ defmodule ChanneledBeatsWeb.UploadLive do
      socket
      |> assign(:form, form)
      |> assign(:beat_name_done, false)
+     |> assign(:album_done, false)
      |> assign(:selected_collapsable, "fl-studio-tutorial")
      |> allow_upload(:album_cover, accept: ~w(image/*), max_entries: 1)}
   end
@@ -38,11 +39,11 @@ defmodule ChanneledBeatsWeb.UploadLive do
   end
 
   def handle_event("remove-album-cover", _params, socket) do
+    ref = Enum.at(socket.assigns.uploads.album_cover.entries, 0).ref
 
-		ref = Enum.at(socket.assigns.uploads.album_cover.entries, 0).ref
-    
     {:noreply,
      socket
+     |> assign(:album_done, false)
      |> cancel_upload(:album_cover, ref)}
   end
 
@@ -59,9 +60,9 @@ defmodule ChanneledBeatsWeb.UploadLive do
   end
 
   def handle_event("validate", %{"form" => params}, socket) do
-    form = AshPhoenix.Form.validate(socket.assigns.form, params)
+    params = augment_params(params, socket)
 
-    form |> IO.inspect()
+    form = AshPhoenix.Form.validate(socket.assigns.form, params)
 
     {:noreply,
      socket
@@ -69,7 +70,25 @@ defmodule ChanneledBeatsWeb.UploadLive do
      |> assign(
        :beat_name_done,
        MapSet.member?(form.source.touched_forms, "name") && !form.errors[:name]
+     )
+     |> assign(
+       :album_done,
+       form.source.forms.album.source.valid? && socket.assigns.uploads.album_cover.entries != []
      )}
+  end
+
+  def augment_params(params, socket) do
+    album_cover = Enum.at(socket.assigns.uploads.album_cover.entries, 0) |> IO.inspect()
+
+    extension =
+      if album_cover do
+        Path.extname(album_cover.client_name)
+      else
+        nil
+      end
+
+    params
+    |> put_in(["album", "extension"], extension)
   end
 
   def collapsable(assigns) do
