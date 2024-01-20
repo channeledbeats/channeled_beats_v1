@@ -11,7 +11,7 @@ defmodule ChanneledBeatsWeb.AuthController do
     |> redirect(to: return_to)
   end
 
-  def failure(conn, _activity, reason) do
+  def failure(conn, _activity, _reason) do
     conn
     |> put_status(401)
     |> redirect(to: ~p"/?failed=true")

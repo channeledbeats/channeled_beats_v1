@@ -3,7 +3,7 @@ defmodule ChanneledBeatsWeb.LiveUserAuth do
 
   use ChanneledBeatsWeb, :verified_routes
 
-  def on_mount(:live_user_optional, _params, session, socket) do
+  def on_mount(:live_user_optional, _params, _session, socket) do
     if socket.assigns[:current_user] do
       {:cont, socket}
     else
