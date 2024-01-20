@@ -14,11 +14,11 @@ defmodule ChanneledBeatsWeb.UploadLive do
             type: :single
           ],
           album: [
-          	resource: ChanneledBeats.MainApi.Album,
-          	# data: %{name: ""},
-          	create_action: :create,
+            resource: ChanneledBeats.MainApi.Album,
+            # data: %{name: ""},
+            create_action: :create,
             # update_action: :update,
-          	type: :single
+            type: :single
           ]
         ]
       )
@@ -29,11 +29,21 @@ defmodule ChanneledBeatsWeb.UploadLive do
      socket
      |> assign(:form, form)
      |> assign(:beat_name_done, false)
-     |> assign(:selected_collapsable, "fl-studio-tutorial")}
+     |> assign(:selected_collapsable, "fl-studio-tutorial")
+     |> allow_upload(:album_cover, accept: ~w(image/*), max_entries: 1)}
   end
 
   def handle_params(_params, _uri, socket) do
     {:noreply, socket}
+  end
+
+  def handle_event("remove-album-cover", _params, socket) do
+
+		ref = Enum.at(socket.assigns.uploads.album_cover.entries, 0).ref
+    
+    {:noreply,
+     socket
+     |> cancel_upload(:album_cover, ref)}
   end
 
   def handle_event("select-collapsable", %{"name" => name}, socket) do
@@ -56,7 +66,10 @@ defmodule ChanneledBeatsWeb.UploadLive do
     {:noreply,
      socket
      |> assign(:form, form)
-     |> assign(:beat_name_done, MapSet.member?(form.source.touched_forms, "name") && !form.errors[:name])}
+     |> assign(
+       :beat_name_done,
+       MapSet.member?(form.source.touched_forms, "name") && !form.errors[:name]
+     )}
   end
 
   def collapsable(assigns) do

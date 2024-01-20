@@ -45,6 +45,34 @@
       <.inputs_for :let={album_form} field={@form[:album]}>
         <div class="p-10">
           <.input type="text" label="Album Name" field={album_form[:name]} />
+
+          <.live_file_input upload={@uploads.album_cover} hidden={true} />
+          <label for={@uploads.album_cover.ref} class="cursor-pointer">
+            <div class="mt-10 h-40 w-40 border border-zinc-300 rounded-lg overflow-hidden">
+              <%= for entry <- @uploads.album_cover.entries do %>
+                <.live_img_preview entry={entry} />
+              <% end %>
+
+              <%= if @uploads.album_cover.entries == [] do %>
+                <div class="text-sm w-full p-4 text-center h-full text-gray-500">
+                  No Album Image Selected
+                </div>
+              <% end %>
+            </div>
+          </label>
+
+          <div class="flex pt-10">
+            <label for={@uploads.album_cover.ref}>
+              <div class="underline cursor-pointer">
+                Upload
+              </div>
+            </label>
+            <%= if @uploads.album_cover.entries != [] do %>
+              <div class="ml-4 underline cursor-pointer" phx-click="remove-album-cover">
+                Remove
+              </div>
+            <% end %>
+          </div>
         </div>
       </.inputs_for>
     </.collapsable>
