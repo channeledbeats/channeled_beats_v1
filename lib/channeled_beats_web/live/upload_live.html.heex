@@ -42,7 +42,11 @@
       name="album"
       selected_collapsable={@selected_collapsable}
     >
-      <div class="p-10">TODO Album</div>
+      <.inputs_for :let={album_form} field={@form[:album]}>
+        <div class="p-10">
+          <.input type="text" label="Album Name" field={album_form[:name]} />
+        </div>
+      </.inputs_for>
     </.collapsable>
 
     <.collapsable

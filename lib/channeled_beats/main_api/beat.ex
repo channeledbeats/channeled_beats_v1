@@ -41,5 +41,10 @@ defmodule ChanneledBeats.MainApi.Beat do
       allow_nil? true
       attribute_writable? true
     end
+
+    belongs_to :album, ChanneledBeats.MainApi.Album do
+      allow_nil? false
+      attribute_writable? true
+    end
   end
 end

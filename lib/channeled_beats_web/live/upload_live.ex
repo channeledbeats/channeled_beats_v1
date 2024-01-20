@@ -12,9 +12,17 @@ defmodule ChanneledBeatsWeb.UploadLive do
             data: socket.assigns.current_user,
             update_action: :update,
             type: :single
+          ],
+          album: [
+          	resource: ChanneledBeats.MainApi.Album,
+          	# data: %{name: ""},
+          	create_action: :create,
+            # update_action: :update,
+          	type: :single
           ]
         ]
       )
+      |> AshPhoenix.Form.add_form(:album)
       |> to_form()
 
     {:ok,
